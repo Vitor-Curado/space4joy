@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <header>
+    <h1> Blog </h1>
+  </header>
+
+  {% if posts.is_empty() %}
+    <p>No posts yet.</p>
+  {% else %}
+    <section class="posts">
+      {% for post in posts %}
+        <article class="post card">
+          <header class="post-header">
+            <h2 class="post-title">
+              <a href="/{{ post.slug }}"> {{ post.title }} </a>
+            </h2>
+            {% if let Some(published_at) = post.formatted_published_at() %}
+                <p>
+                    <strong> Published: </strong>
+                    <time datetime="{{ published_at }}">
+                        {{ post.formatted_published_at().unwrap() }}
+                    </time>
+                    ({{ post.formatted_time_since_publication().unwrap() }} after creation)
+                </p>
+            {% endif %}
+            <p>
+              <strong> Views: </strong> {{ post.views }}
+            </p>
+            <p>
+              <strong> Tags: </strong> Not yet implemented
+            </p>
+          </header>
+          <a href="/{{ post.slug }}"> Read post </a>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+{% endblock %}

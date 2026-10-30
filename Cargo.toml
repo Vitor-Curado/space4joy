@@ -1,0 +1,81 @@
+[package]
+name = "buildhaven"
+default-run = "buildhaven"
+version = "0.5.2"
+edition = "2024"
+
+[dependencies]
+# --- Web / HTTP ---
+axum = "0.8.9"
+tower-http = { version = "0.7.1", features = ["fs", "trace", "set-header", "compression-gzip", "cors", "limit", "compression-br", "compression-deflate", "request-id"] }
+tower_governor = { version = "0.8.0", features = ["axum"] }
+
+# --- Sessions / authentication ---
+tower-sessions = "0.14"
+tower-sessions-sqlx-store = { version = "0.15", features = ["postgres"] }
+argon2 = "0.6.0"
+
+# --- Database ---
+sqlx = { version = "0.8.6", features = ["postgres", "runtime-tokio-rustls", "uuid", "time", "macros"] }
+
+# --- Application / serialisation ---
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0.18"
+slug = "0.1"
+
+# --- Configuration ---
+dotenvy = "0.15.7"
+envy = "0.4"
+
+# --- Templates / content ---
+askama = "0.16.0"
+pulldown-cmark = "0.13.3"
+
+# --- Domain/security/validation ---
+uuid = {version = "1.23.1", features = ["serde", "v7"]}
+validator = "0.20.0"
+time = { version = "0.3.47", features = ["formatting"] }
+
+# -- Async runtime ---
+tokio = { version = "1.53.1", features = ["full"] }
+
+# Observability
+tracing-subscriber = { version = "0.3.23", features = ["env-filter", "json"] }
+metrics-exporter-prometheus = "0.18"
+tracing = "0.1.44"
+metrics = "0.24"
+
+# --- Investigate / potentially add ---
+# API
+# utoipa
+
+# Authorization — only if custom RBAC gets complicated
+# casbin
+
+# Background jobs — only if you need a job system
+# apalis / fang
+
+# Caching — only if you need application-level caching
+# moka
+
+# Email — only if you send email
+# lettre
+
+# CSRF — only if you're doing cookie-based browser auth
+# tower-csrf
+
+[build-dependencies]
+walkdir = "2"
+
+[dev-dependencies]
+tower = { version = "0.5.3", features = ["util"] }
+http-body-util = "0.1"
+cargo-bloat = "0.12.1"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+panic = "abort"
+strip = true

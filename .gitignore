@@ -1,0 +1,6 @@
+benchmarks/results/*.raw
+/client/node_modules
+/dist
+/static
+/target
+.env

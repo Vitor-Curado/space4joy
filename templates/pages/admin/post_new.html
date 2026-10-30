@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>New Post</h1>
+    <p> <a href="/admin/posts"> <= Back to Posts </a> </p>
+
+    <form class="form" method="post" action="/admin/posts">
+        <div class="form-group">
+            <label class="form-label" for="title"> Title </label>
+            <input
+                class="form-field"
+                type="text"
+                id="title"
+                name="title"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="seo_title"> SEO Title </label>
+            <input
+                class="form-field"
+                type="text"
+                id="seo_title"
+                name="seo_title"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="meta_description"> Meta Description </label>
+            <textarea
+                class="form-field"
+                id="meta_description"
+                name="meta_description"
+                rows="5"
+                required
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="content"> Content </label>
+            <textarea
+                class="form-field"
+                id="content"
+                name="content"
+                rows="20"
+                required
+            ></textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit"> Create Draft </button>
+        </div>
+    </form>
+{% endblock %}

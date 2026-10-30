@@ -1,0 +1,26 @@
+pipeline:
+  check:
+    image: rust:latest
+    commands:
+      - ./scripts/check.sh
+
+  build-image:
+    image: podman
+    commands:
+      - podman build -t ghcr.io/vitor-curado/personal-website:latest .
+      - podman push ghcr.io/vitor-curado/personal-website:latest
+
+  deploy:
+    image: appleboy/drone-ssh
+    depends_on:
+      - build-image
+    when:
+      branch: main
+    settings:
+      host: 167.99.180.229
+      username: root
+      key:
+        from_secret: ssh_key
+      script:
+        - cd /srv/Personal-website
+        - ./scripts/deploy.sh

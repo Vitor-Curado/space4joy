@@ -1,0 +1,69 @@
+use crate::{
+    cors::apply_cors,
+    logging::apply_logging,
+    metrics::{init_metrics, metrics_endpoint, record_http_metrics},
+    routes::{protected_routes, public_routes},
+    security::apply_security_headers,
+    state::AppState,
+};
+use axum::{Extension, Router, middleware::from_fn, routing::get};
+use time::Duration;
+use tower_http::{
+    compression::CompressionLayer,
+    request_id::{MakeRequestUuid, PropagateRequestIdLayer, SetRequestIdLayer},
+    services::ServeDir,
+};
+use tower_sessions::{Expiry, SessionManagerLayer};
+use tower_sessions_sqlx_store::PostgresStore;
+
+pub fn app(state: AppState, session_store: PostgresStore) -> Router {
+    let config = &state.config;
+
+    let media_service = ServeDir::new("media")
+        .precompressed_br()
+        .precompressed_gzip();
+    let dist_service = ServeDir::new("dist")
+        .precompressed_br()
+        .precompressed_gzip();
+    let contact_service = ServeDir::new("static/contact")
+        .precompressed_br()
+        .precompressed_gzip();
+    let docs_service = ServeDir::new("static/docs/")
+        .redirect_path_prefix("/docs")
+        .precompressed_br()
+        .precompressed_gzip();
+
+    let session_layer = SessionManagerLayer::new(session_store)
+        .with_name(crate::constants::cookies::SESSION_ID)
+        .with_http_only(true)
+        .with_secure(config.app.cookie_secure)
+        .with_same_site(tower_sessions::cookie::SameSite::Strict)
+        .with_path("/")
+        .with_expiry(Expiry::OnInactivity(Duration::hours(
+            config.session.duration_hours,
+        )));
+
+    let metrics_handle = init_metrics();
+
+    let mut router = Router::new()
+        .merge(public_routes())
+        .merge(protected_routes(state.clone()))
+        .route("/metrics", get(metrics_endpoint))
+        .layer(session_layer)
+        .nest_service("/media", media_service)
+        .nest_service("/dist", dist_service)
+        .nest_service("/contact", contact_service)
+        .nest_service("/docs", docs_service)
+        .layer(CompressionLayer::new().br(true).gzip(true).deflate(true))
+        .layer(SetRequestIdLayer::x_request_id(MakeRequestUuid))
+        .layer(PropagateRequestIdLayer::x_request_id())
+        .layer(Extension(metrics_handle))
+        .with_state(state.clone());
+
+    router = apply_security_headers(router, config);
+    router = apply_logging(router, config);
+    router = apply_cors(router, config);
+    router = router.layer(from_fn(record_http_metrics));
+
+    router
+}

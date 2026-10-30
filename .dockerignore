@@ -1,0 +1,8 @@
+/target
+/.git
+.gitignore
+.dockerignore
+/tests
+/scripts
+/static/dist
+.env

@@ -1,0 +1,58 @@
+.text-extra-large {
+  font-size: var(--font-size-extra-large);
+}
+
+.text-large {
+  font-size: var(--font-size-large);
+}
+
+.text-extra-medium {
+  font-size: var(--font-size-extra-medium);
+}
+
+.text-medium {
+  font-size: var(--font-size-medium);
+}
+
+.text-small {
+  font-size: var(--font-size-small);
+}
+
+.text-extra-small {
+  font-size: var(--font-size-extra-small);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  color: var(--color-text);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-normal);
+}
+
+h1 {
+  font-size: var(--font-size-extra-large);
+}
+
+h2 {
+  font-size: var(--font-size-large);
+}
+
+h3 {
+  font-size: var(--font-size-extra-medium);
+}
+
+p {
+  margin: 0;
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-accent);
+}
+
+strong {
+  font-weight: var(--font-weight-bold);
+}

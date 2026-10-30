@@ -1,0 +1,25 @@
+.contact-list {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-medium);
+}
+
+.contact-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.contact-link {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.contact-link:hover {
+  color: var(--color-accent);
+}
