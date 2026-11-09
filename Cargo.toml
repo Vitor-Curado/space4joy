@@ -1,8 +1,11 @@
 [package]
-name = "buildhaven"
-default-run = "buildhaven"
+name = "space4joy"
+default-run = "space4joy"
 version = "0.5.2"
 edition = "2024"
+authors = ["Vitor Curado <vitorbmcurado@proton.me>", "Petra Michael"]
+description = "A website built for space & joy"
+repository = "https://github.com/Vitor-Curado/space4joy"
 
 [dependencies]
 # --- Web / HTTP ---

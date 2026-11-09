@@ -1,39 +1,139 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <header>
-    <h1> Blog </h1>
-  </header>
+<section class="hero" aria-labelledby="hero-title">
+    <div class="hero-content">
+        <p class="hero-eyebrow"> SPACE4JOY </p>
+        <h1 class="hero-title"> Create. Cultivate. Curate <span> JOY </span> Every Day </h1>
+        <p class="hero-subtitle"> More Joy. Less Stress. More Space to <span> THRIVE.</span> </p>
+        <div class="hero-copy">
+            <p class="hero-description"> You are working so hard to achieve success. You are busy. Your life is full. </p>
+            <p class="hero-description"> What about your JOY? </p>
+            <p class="hero-description"> Don't leave your space for JOY empty. </p>
+            <p class="hero-description"> You don't have to choose between your ambition and your JOY. You can have both. </p>
+        </div>
+        <div class="hero-actions">
+            <a href="/space4joy-experience" class="button button-primary">
+                Discover SPACE4JOY
+            </a>
 
-  {% if posts.is_empty() %}
-    <p>No posts yet.</p>
-  {% else %}
-    <section class="posts">
-      {% for post in posts %}
-        <article class="post card">
-          <header class="post-header">
-            <h2 class="post-title">
-              <a href="/{{ post.slug }}"> {{ post.title }} </a>
-            </h2>
-            {% if let Some(published_at) = post.formatted_published_at() %}
-                <p>
-                    <strong> Published: </strong>
-                    <time datetime="{{ published_at }}">
-                        {{ post.formatted_published_at().unwrap() }}
-                    </time>
-                    ({{ post.formatted_time_since_publication().unwrap() }} after creation)
-                </p>
-            {% endif %}
+            <a href="/at-your-service" class="button button-secondary">
+                Explore Services
+            </a>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <!-- Replace with Petra's approved photograph. -->
+        <div class="hero-image-placeholder">
+            <img src="/media/themes/amethyst.png" alt="SPACE4JOY visual placeholder" />
+        </div>
+    </div>
+</section>
+
+<!-- Joy Across Contexts -->
+<section class="joy-across-contexts" aria-labelledby="joy-contexts-title">
+    <div class="section-content">
+        <p class="section-eyebrow"> JOY ACROSS CONTEXTS </p>
+        <h2 class="section-title">
+            Make Space for JOY Wherever You Are.
+        </h2>
+        <div class="joy-contexts-grid">
+            <div class="joy-context">
+                <h3> Joy for you. </h3>
+            </div>
+            <div class="joy-context">
+                <h3> Joy at work. </h3>
+            </div>
+            <div class="joy-context">
+                <h3> Joy at home. </h3>
+            </div>
+            <div class="joy-context">
+                <h3> Joy in every stage, space and season of life. </h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Introduction -->
+<section class="introduction" aria-labelledby="introduction-title">
+    <div class="section-content">
+        <p class="section-eyebrow"> The SPACE4JOY APPROACH </p>
+
+        <h2 class="section-title">
+            Does your success feel as good as it looks?
+        </h2>
+
+        <p class="section-description">
+            You can be doing well on paper and still feel that something
+            is missing. You can achieve your goals, meet expectations and
+            show up for everyone else, yet struggle to make room for yourself.
+        </p>
+
+        <p class="section-description">
+            SPACE4JOY is about bridging the gap between appearing successful
+            and feeling fulfilled. It is an invitation to rethink how you
+            experience success and make space for the people, relationships
+            and experiences that make life meaningful.
+        </p>
+
+        <p class="section-statement">
+            SUCCESS WITHOUT JOY IS SIMPLY STRESS IN DISGUISE.
+        </p>
+
+        <a href="/about" class="button button-primary">
+            See the WHY behind SPACE4JOY
+        </a>
+    </div>
+</section>
+
+<!-- Four Spaces -->
+<section class="four-spaces" aria-labelledby="four-spaces-title">
+    <div class="section-header">
+        <p class="section-eyebrow">THE FOUR SPACES</p>
+
+        <h2 class="four-spaces-title">
+            JOY belongs to everyone, in every space.
+        </h2>
+    </div>
+
+    <div class="four-spaces-grid">
+        <article class="space-card">
+            <h3>JOY for YOU</h3>
+
             <p>
-              <strong> Views: </strong> {{ post.views }}
+                Reconnect with yourself, your interests and the experiences
+                that make you feel alive.
             </p>
-            <p>
-              <strong> Tags: </strong> Not yet implemented
-            </p>
-          </header>
-          <a href="/{{ post.slug }}"> Read post </a>
         </article>
-      {% endfor %}
-    </section>
-  {% endif %}
+        <article class="space-card">
+            <h3>JOY at HOME</h3>
+            <p>
+                Make room for meaningful connections, shared experiences
+                and the people who matter.
+            </p>
+        </article>
+
+        <article class="space-card">
+            <h3>JOY at WORK</h3>
+            <p>
+                Bring more humanity, connection and meaning into the
+                working day.
+            </p>
+        </article>
+
+        <article class="space-card">
+            <h3>LEADING with JOY</h3>
+            <p>
+                Create the conditions for people to feel valued,
+                contribute meaningfully and thrive.
+            </p>
+        </article>
+    </div>
+    <div class="section-actions">
+        <a href="/the-space4joy-experience" class="button button-primary">
+            Explore the four spaces
+        </a>
+    </div>
+</section>
 {% endblock %}

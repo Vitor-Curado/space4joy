@@ -1,6 +1,6 @@
-benchmarks/results/*.raw
+/benchmarks/20??-??-??_??-??-??.txt
 /client/node_modules
-/dist
 /static
 /target
+/dist
 .env

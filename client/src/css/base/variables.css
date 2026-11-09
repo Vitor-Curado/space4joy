@@ -1,39 +1,47 @@
 :root {
+  /* The client likes these colours, figure out how to use them */
+  --brand-golden: #E9AA24;
+  --brand-orange: #E96528;
+  --brand-turquoise: #15949A;
+  --brand-brown: #874322;
+  --brand-teal: #258D78;
+  --brand-cream: #F8F2E8;
+
+  /* Palette */
+  --color-900: #;
+  --color-700: #;
+  --color-600: #;
+  --color-500: #;
+  --color-300: #;
+  --color-200: #;
+  --color-100: #;
+
   /* Surfaces */
-  --color-background: var(--color-100);
-  --color-surface: var(--color-200);
-  --color-surface-hover: var(--color-300);
+  --color-background: var(--brand-cream);
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #F1E7D7;
 
-  /* Text */
-  --color-text: var(--color-900);
-  --color-text-muted: var(--color-700);
+  /* Typography */
+  --color-text: var(--brand-brown);
+  --color-text-muted: #665448;
+  --color-text-inverse: #FFFFFF;
 
-  /* Semantic colors */
-  --color-surface-alt: var(--color-100);
-  --color-card-border: var(--color-border);
-  --color-highlight: var(--color-accent);
-  --color-highlight-soft: var(--color-surface-hover);
-
-  --color-article: var(--color-surface);
-  --color-summary: var(--color-surface-hover);
-
-  --color-button-text: white;
-
-  /* To do: fill these. */
-  --color-success: #22c55e;
-  --color-warning: #eab308;
-  --color-danger: #ef4444;
-  --color-info: #3b82f6;
-
-  /* Accents */
-  --color-accent: var(--color-500);
-  --color-accent-hover: var(--color-600);
+  /* Interactive elements */
+  --color-primary: var(--brand-turquoise);
+  --color-primary-hover: #117C81;
+  --color-secondary: var(--brand-teal);
+  --color-secondary-hover: #1D705F;
+  --color-highlight: var(--brand-golden);
 
   /* Structure */
-  --color-navbar: var(--color-200);
-  --color-border: var(--color-300);
-  --color-focus: var(--color-500);
+  --color-navbar: var(--color-surface);
+  --color-border: #E4D8C8;
+  --color-focus: var(--brand-turquoise);
   --color-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Accents */
+  --color-accent: var(--brand-orange);
+  --color-accent-hover: var(--color-600);
 
   /* Spacing scale */
   --spacing-extra-small: 0.25rem;
@@ -57,7 +65,7 @@
   /* Font sizes */
   --font-size-extra-small: 0.875rem;
   --font-size-small: 1rem;
-  --font-size-medium: 1.25rem;
+  --font-size-medium: 1.125rem;
   --font-size-extra-medium: 1.5rem;
   --font-size-large: clamp(1.5rem, 2vw, 2rem);
   --font-size-extra-large: clamp(2rem, 3vw, 3rem);

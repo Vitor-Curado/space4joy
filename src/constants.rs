@@ -1,39 +1,39 @@
+// Usually changes
+
 pub mod endpoints {
     pub const HOME: &str = "/";
-    pub const BLOG_POST: &str = "/{slug}";
     pub const CONTACT: &str = "/contact";
-    pub const DOCS: &str = "/docs";
-    pub const LOGIN: &str = "/login";
+    pub const SPACE4JOYEXPERIENCE: &str = "/space4joy-experience";
+    pub const ATYOURSERVICE: &str = "/at-your-service";
+}
 
-    pub const ADMIN: &str = "/admin";
-    pub const ADMIN_POSTS: &str = "/admin/posts";
-    pub const ADMIN_NEW_POST: &str = "/admin/posts/new";
-    pub const ADMIN_POST: &str = "/admin/posts/{id}";
-    pub const ADMIN_DELETE_POST: &str = "/admin/posts/{id}/delete";
-    pub const ADMIN_PUBLISH_POST: &str = "/admin/posts/{id}/publish";
-    pub const ADMIN_UNPUBLISH_POST: &str = "/admin/posts/{id}/unpublish";
+pub mod seo_descriptions {
+    pub const HOME: &str = "Less Stress. More Joy. Create Room to THRIVE.";
+    pub const SPACE4JOYEXPERIENCE: &str = "Learn the practical ways to experience joy";
+    pub const ATYOURSERVICE: &str = "Here, you may learn...";
+    pub const CONTACT: &str = "Contact information to get in touch with me";
+}
+
+pub mod contact_information {
+    pub const EMAIL: &str = "space4joy@gmail.com";
+    pub const LINKEDIN: &str = "https://www.linkedin.com/in/petmic/";
+    pub const GITHUB: &str = "https://github.com/Vitor-Curado/space4joy";
+    pub const WHATSAPP: &str = "https://wa.me/16477817484";
 }
 
 pub mod icons {
-    pub const BLOG: &str = "blog.png";
     pub const CONTACT: &str = "contact.svg";
-    pub const DOCS: &str = "blog.png";
-    pub const EMAIL: &str = "email.png";
     pub const HOME: &str = "home.svg";
-    pub const LANGUAGE: &str = "language.svg";
-    pub const LOGIN: &str = "login.svg";
-    pub const RESUME: &str = "resume.svg";
-    pub const SOFTWARE: &str = "software.svg";
-    pub const THEME: &str = "theme.svg";
 }
 
 pub mod titles {
-    pub const BLOG: &str = "Blog";
+    pub const HOME: &str = "Space4Joy";
+    pub const SPACE4JOYEXPERIENCE: &str = "Space4Joy experience";
+    pub const ATYOURSERVICE: &str = "At your service";
     pub const CONTACT: &str = "Contact";
-    pub const DOCS: &str = "Documentation";
-    pub const HOME: &str = "BuildHaven";
-    pub const LOGIN: &str = "Login";
 }
+
+// Rarely changes
 
 pub mod paths {
     pub const DIST: &str = "dist";
@@ -61,30 +61,8 @@ pub mod service {
 }
 
 pub mod project {
-    pub const NAME: &str = "BuildHaven";
+    pub const NAME: &str = env!("CARGO_PKG_NAME");
+    pub const DESCRIPTION: &str = env!("CARGO_PKG_DESCRIPTION");
     pub const VERSION: &str = env!("CARGO_PKG_VERSION");
-    pub const REPOSITORY: &str = "https://github.com/Vitor-Curado/BuildHaven/";
-}
-
-pub mod seo_descriptions {
-    pub const HOME: &str = "Welcome to BuildHaven, a personal website programmed from scratch using Rust, TS, Postgres and AWS. Here you can find various blog posts and hopefully I can make you smile";
-    pub const BLOG: &str = "Blog posts ranging from heartfelt stories to funny, to thoughtful, and a variety of other topics.";
-    pub const LOGIN: &str = "Sign in to BuildHaven";
-    pub const CONTACT: &str = "Contact information to get in touch with me";
-    pub const DOCS: &str = "Heartfelt story-telling about my journey into software development, unfinished and full of humanity. I hope you enjoy it";
-}
-
-pub mod seo_canonical_paths {
-    use crate::constants::endpoints;
-    pub const HOME: &str = endpoints::HOME;
-    pub const BLOG: &str = endpoints::BLOG_POST;
-    pub const CONTACT: &str = endpoints::CONTACT;
-    pub const DOCS: &str = endpoints::DOCS;
-}
-
-pub mod contact_information {
-    pub const EMAIL: &str = "vitorbmcurado@proton.me";
-    pub const LINKEDIN: &str = "https://www.linkedin.com/in/vitor-curado/";
-    pub const GITHUB: &str = "https://github.com/Vitor-Curado";
-    pub const WHATSAPP: &str = "https://wa.me/16477817484";
+    pub const REPOSITORY: &str = env!("CARGO_PKG_REPOSITORY");
 }

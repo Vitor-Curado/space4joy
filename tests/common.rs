@@ -1,7 +1,7 @@
 use std::sync::Arc;
 
 use axum::Router;
-use buildhaven::{assets::Assets, config::Config, pool::create_pool, router::app, state::AppState};
+use space4joy::{assets::Assets, config::Config, pool::create_pool, router::app, state::AppState};
 use tower_sessions_sqlx_store::PostgresStore;
 
 pub async fn test_app() -> Router {

@@ -11,7 +11,6 @@ pub mod logging;
 // main.rs
 pub mod metrics;
 pub mod models;
-pub mod navbar;
 pub mod pool;
 pub mod repository;
 pub mod router;

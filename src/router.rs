@@ -2,7 +2,7 @@ use crate::{
     cors::apply_cors,
     logging::apply_logging,
     metrics::{init_metrics, metrics_endpoint, record_http_metrics},
-    routes::{protected_routes, public_routes},
+    routes::public_routes,
     security::apply_security_headers,
     state::AppState,
 };
@@ -47,7 +47,6 @@ pub fn app(state: AppState, session_store: PostgresStore) -> Router {
 
     let mut router = Router::new()
         .merge(public_routes())
-        .merge(protected_routes(state.clone()))
         .route("/metrics", get(metrics_endpoint))
         .layer(session_layer)
         .nest_service("/media", media_service)

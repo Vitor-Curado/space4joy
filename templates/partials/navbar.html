@@ -1,65 +1,65 @@
-<nav class="navbar">
+<nav class="navbar" aria-label="Main navigation">
     <ul class="navbar-group navbar-left">
         <li>
-            <a href="/" class="navbar-link">
-                <img
-                    src="/media/icons/{{ crate::constants::icons::HOME }}"
-                    alt="Home"
-                    class="navbar-icon"
-                >
-                Home
-            </a>
+            <a href="/" class="navbar-brand" aria-label="SPACE4JOY home"> SPACE4JOY </a>
         </li>
         <li class="dropdown" data-dropdown>
-            <button class="dropdown-button util-icon">
-                <img src="/media/icons/{{ crate::constants::icons::SOFTWARE }}" alt="More" class="navbar-icon">
-                Docs
+            <button
+                type="button"
+                class="dropdown-button"
+                aria-expanded="false"
+                aria-controls="Experience-dropdown-menu"
+            >
+                Experience
+                <span class="dropdown-chevron" aria-hidden="true"> &#9662; </span>
             </button>
 
             <ul class="dropdown-menu">
-                {% for doc in base.docs %}
                 <li>
-                    <a href="/docs/{{ doc.slug }}" class="dropdown-link">
-                        {{ doc.title }}
-                    </a>
+                    <a href="/joy-for-you" class="dropdown-link"> JOY for YOU </a>
                 </li>
-                {% endfor %}
+                <li>
+                    <a href="/joy-at-home" class="dropdown-link"> JOY at HOME </a>
+                </li>
+                <li>
+                    <a href="/joy-at-work" class="dropdown-link"> JOY at WORK </a>
+                </li>
+                <li>
+                    <a href="/leading-with-joy" class="dropdown-link"> LEADING with JOY </a>
+                </li>
             </ul>
+        </li>
+        <li class="dropdown" data-dropdown>
+            <button
+                type="button"
+                class="dropdown-button"
+                aria-expanded="false"
+                aria-controls="at-your-service-dropdown-menu"
+            >
+                At Your Service
+                <span class="dropdown-chevron" aria-hidden="true"> &#9662; </span>
+            </button>
+
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="/for-individuals" class="dropdown-link"> For individuals </a>
+                </li>
+                <li>
+                    <a href="/for-organisations-and-teams" class="dropdown-link"> For Organizations & Teams </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="/founder" class="navbar-link"> Founder </a>
+        </li>
+        <li>
+            <a href="/resources" class="navbar-link"> Resources </a>
         </li>
     </ul>
 
     <ul class="navbar-group navbar-right">
-        <!-- Login / Register -->
         <li>
-            <a href="/login" class="navbar-link util-icon">
-                <img src="/media/icons/{{ crate::constants::icons::LOGIN }}" alt="Login" class="navbar-icon">
-            </a>
-        </li>
-
-        <!-- Theme -->
-        <li class="dropdown" data-dropdown>
-            <button class="dropdown-button util-icon">
-                <img src="/media/icons/{{ crate::constants::icons::THEME }}" alt="Theme" class="navbar-icon">
-            </button>
-
-            <ul class="dropdown-menu">
-                {% for theme in base.themes %}
-                <li>
-                    <button
-                        class="dropdown-link"
-                        data-theme="{{ theme.id }}"
-                    >
-                        <img
-                            src="/media/themes/{{ theme.icon }}"
-                            alt="{{ theme.name }}"
-                            class="navbar-icon"
-                        >
-
-                        {{ theme.name }}
-                    </button>
-                </li>
-                {% endfor %}
-            </ul>
+            <a href="/connect" class="navbar-link navbar-cta" aria-label="Connect"> Connect </a>
         </li>
     </ul>
 </nav>

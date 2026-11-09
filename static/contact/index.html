@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="night">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,153 +7,73 @@
         <meta name="description" content="Contact information to get in touch with me">
         <link rel="canonical" href="/contact">
         <link rel="icon" href="/media/icons/contact.svg">
-        <link rel="stylesheet" href="/dist/assets/index-CuL8elty.css">
+        <link rel="stylesheet" href="/dist/assets/index-D0oq0Udi.css">
         
     </head>
 
     <body>
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Main navigation">
     <ul class="navbar-group navbar-left">
         <li>
-            <a href="/" class="navbar-link">
-                <img
-                    src="/media/icons/home.svg"
-                    alt="Home"
-                    class="navbar-icon"
-                >
-                Home
-            </a>
+            <a href="/" class="navbar-brand" aria-label="SPACE4JOY home"> SPACE4JOY </a>
         </li>
-        <!--
-        <li>
-            <a href="/resume" class="navbar-link">
-                <img
-                    src="/media/icons/resume.svg"
-                    alt="Resume"
-                    class="navbar-icon"
-                >
-                Resume
-            </a>
-        </li> -->
         <li class="dropdown" data-dropdown>
-            <button class="dropdown-button util-icon">
-                <img src="/media/icons/software.svg" alt="More" class="navbar-icon">
-                Docs
+            <button
+                type="button"
+                class="dropdown-button"
+                aria-expanded="false"
+                aria-controls="Experience-dropdown-menu"
+            >
+                Experience
+                <span class="dropdown-chevron" aria-hidden="true"> &#9662; </span>
             </button>
 
             <ul class="dropdown-menu">
-                
                 <li>
-                    <a href="/docs/decicions" class="dropdown-link">
-                        Decisions
-                    </a>
+                    <a href="/joy-for-you" class="dropdown-link"> JOY for YOU </a>
                 </li>
-                
                 <li>
-                    <a href="/docs/learned-concepts" class="dropdown-link">
-                        Learned concepts
-                    </a>
+                    <a href="/joy-at-home" class="dropdown-link"> JOY at HOME </a>
                 </li>
-                
                 <li>
-                    <a href="/docs/learning-journey" class="dropdown-link">
-                        Learning journey
-                    </a>
+                    <a href="/joy-at-work" class="dropdown-link"> JOY at WORK </a>
                 </li>
-                
                 <li>
-                    <a href="/docs/scope" class="dropdown-link">
-                        Scope
-                    </a>
+                    <a href="/leading-with-joy" class="dropdown-link"> LEADING with JOY </a>
                 </li>
-                
-                <li>
-                    <a href="/docs/what-is-software-engineering" class="dropdown-link">
-                        What is software engineering
-                    </a>
-                </li>
-                
             </ul>
+        </li>
+        <li class="dropdown" data-dropdown>
+            <button
+                type="button"
+                class="dropdown-button"
+                aria-expanded="false"
+                aria-controls="at-your-service-dropdown-menu"
+            >
+                At Your Service
+                <span class="dropdown-chevron" aria-hidden="true"> &#9662; </span>
+            </button>
+
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="/for-individuals" class="dropdown-link"> For individuals </a>
+                </li>
+                <li>
+                    <a href="/for-organisations-and-teams" class="dropdown-link"> For Organizations & Teams </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="/founder" class="navbar-link"> Founder </a>
+        </li>
+        <li>
+            <a href="/resources" class="navbar-link"> Resources </a>
         </li>
     </ul>
 
     <ul class="navbar-group navbar-right">
-        <!-- Login / Register -->
         <li>
-            <a href="/login" class="navbar-link util-icon">
-                <img src="/media/icons/login.svg" alt="Login" class="navbar-icon">
-            </a>
-        </li>
-
-        <!-- Theme -->
-        <li class="dropdown" data-dropdown>
-            <button class="dropdown-button util-icon">
-                <img src="/media/icons/theme.svg" alt="Theme" class="navbar-icon">
-            </button>
-
-            <ul class="dropdown-menu">
-                
-                <li>
-                    <button
-                        class="dropdown-link"
-                        data-theme="sunset"
-                    >
-                        <img
-                            src="/media/themes/sunset.png"
-                            alt="Sunset"
-                            class="navbar-icon"
-                        >
-
-                        Sunset
-                    </button>
-                </li>
-                
-                <li>
-                    <button
-                        class="dropdown-link"
-                        data-theme="night"
-                    >
-                        <img
-                            src="/media/themes/night.png"
-                            alt="Night"
-                            class="navbar-icon"
-                        >
-
-                        Night
-                    </button>
-                </li>
-                
-                <li>
-                    <button
-                        class="dropdown-link"
-                        data-theme="forest"
-                    >
-                        <img
-                            src="/media/themes/forest.png"
-                            alt="Forest"
-                            class="navbar-icon"
-                        >
-
-                        Forest
-                    </button>
-                </li>
-                
-                <li>
-                    <button
-                        class="dropdown-link"
-                        data-theme="ocean"
-                    >
-                        <img
-                            src="/media/themes/ocean.png"
-                            alt="Ocean"
-                            class="navbar-icon"
-                        >
-
-                        Ocean
-                    </button>
-                </li>
-                
-            </ul>
+            <a href="/connect" class="navbar-link navbar-cta" aria-label="Connect"> Connect </a>
         </li>
     </ul>
 </nav>
@@ -162,52 +82,52 @@
     <h1> Contact information </h1>
     <ul class="contact-list grid grid-auto">
         <li class="card contact-item">
-            <img class="contact-icon" src="/media/icons/email.svg" alt="">
-            <a class="contact-link" href="mailto:vitorbmcurado@proton.me"> Email </a>
+            <img class="contact-icon" src="/media/icons/email.svg" alt="Email">
+            <a class="contact-link" href="mailto:space4joy@gmail.com"> Email </a>
         </li>
         <li class="card contact-item">
-            <img class="contact-icon" src="/media/icons/linkedin.svg" alt="">
-            <a class="contact-link" href="https://www.linkedin.com/in/vitor-curado/"> LinkedIn </a>
+            <img class="contact-icon" src="/media/icons/linkedin.svg" alt="LinkedIn">
+            <a class="contact-link" href="https://www.linkedin.com/in/petmic/"> LinkedIn </a>
         </li>
         <li class="card contact-item">
-            <img class="contact-icon" src="/media/icons/github.svg" alt="">
-            <a class="contact-link" href="https://github.com/Vitor-Curado"> GitHub </a>
+            <img class="contact-icon" src="/media/icons/github.svg" alt="GitHub">
+            <a class="contact-link" href="https://github.com/Vitor-Curado/space4joy"> GitHub </a>
         </li>
         <li class="card contact-item">
-            <img class="contact-icon" src="/media/icons/whatsapp.svg" alt="">
+            <img class="contact-icon" src="/media/icons/whatsapp.svg" alt="WhatsApp">
             <a class="contact-link" href="https://wa.me/16477817484"> WhatsApp </a>
         </li>
     </ul>
 
         </main>
-        <footer class="footer container">
+        <footer class="footer">
     <div class="footer-content">
-
-        <nav class="footer-nav" aria-label="Footer">
-            <!-- <a href="/about" class="footer-link">About</a> -->
-            <a href="/contact" class="footer-link">Contact</a>
+        <div class="footer-brand">
+            <a href="/" class="footer-logo" aria-label="SPACE4JOY Home"> SPACE4JOY </a>
+            <p class="footer-tagline"> Create. Cultivate. Curate JOY Every Day. </p>
+            <p class="footer-supporting-tagline"> More Joy. Less Stress. More Space to THRIVE. </p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="/" class="footer-link"> Home </a>
+            <a href="/experience" class="footer-link"> The SPACE4JOY Experience </a>
+            <a href="/services" class="footer-link"> At Your Service </a>
+            <a href="/founder" class="footer-link"> Founder's Story </a>
+            <a href="/resources" class="footer-link"> Resources </a>
+            <a href="/connect" class="footer-link"> Connect </a>
+            <a href="/privacy" class="footer-link"> Privacy Policy </a>
         </nav>
 
-        <a
-            href="https://www.linkedin.com/in/vitor-curado/"
-            class="footer-link footer-copy"
-        >
-            © 2025 Vitor Curado
-        </a>
+        <div class="footer-subscribe">
+            <a href="/stay-in-the-loop" class="footer-link"> Stay in the Loop </a>
+        </div>
 
-        <span class="footer-tech">
-            Rust · TypeScript · PostgreSQL · AWS
-        </span>
-
-        <a
-            href="https://github.com/Vitor-Curado/BuildHaven/"
-            class="footer-link footer-version"
-        >
-            v0.5.2
-        </a>
-
+        <div class="footer-signature"> SPACE4JOY. My space. Your space. Our space to THRIVE together. </div>
+        <div class="footer-bottom"> 
+            <span> Created by Petra Michael </span>
+            <span> &copy; 2026 SPACE4JOY. All rights reserved. </span>
+        </div>
     </div>
 </footer>
-        <script type="module" src="/dist/assets/index-CiXMZcxP.js"></script>
+        <script type="module" src="/dist/assets/index-C22-Ds9p.js"></script>
     </body>
 </html>

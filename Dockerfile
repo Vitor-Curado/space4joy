@@ -30,7 +30,7 @@ FROM debian:bookworm-slim
 
 WORKDIR /app
 
-COPY --from=builder /app/target/release/buildhaven .
+COPY --from=builder /app/target/release/space4joy .
 COPY --from=builder /app/static ./static
 
 COPY templates ./templates
@@ -44,4 +44,4 @@ USER root
 
 EXPOSE 3000
 
-CMD ["./buildhaven"]
+CMD ["./space4joy"]

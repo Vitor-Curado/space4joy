@@ -1,34 +1,19 @@
 use crate::{
-    auth::verify_password,
-    constants::{self, icons, titles},
+    constants::{self, endpoints, icons, seo_descriptions, titles},
     error::{AppError, AppResult},
-    models::{LoginForm, NewPost, UpdatePost},
-    repository::{
-        create_post, delete_post, find_user_by_email, get_all_posts, get_post_by_id,
-        get_posts_by_slug, get_published_posts, increment_post_views, publish_post, unpublish_post,
-        update_post,
-    },
     state::AppState,
     templates::{
-        AdminEditPostTemplate, AdminNewPostTemplate, AdminPostsTemplate, AdminTemplate,
-        BaseTemplateContext, BlogPostTemplate, IndexTemplate, LoginTemplate,
+        AtYourServiceTemplate, BaseTemplateContext, IndexTemplate, Space4joyExperienceTemplate,
     },
-    utils::markdown_to_html,
 };
 
 use axum::{
-    Form,
-    extract::{Path, State},
-    response::{Html, IntoResponse, Redirect, Response},
+    extract::State,
+    response::{Html, IntoResponse, Response},
 };
 
 use askama::Template;
 use std::time::Instant;
-use tower_sessions::Session;
-use uuid::Uuid;
-
-const DUMMY_HASH: &str =
-    "$argon2id$v=19$m=19456,t=2,p=1$c29tZXNhbHQ$C5Z8YlH9l5k6n6u5W1zvQ8FJ5m0e3M3G7pT9oXk2c9Q";
 
 #[allow(clippy::needless_pass_by_value)]
 pub fn render_template<T: Template>(t: T) -> AppResult<Response> {
@@ -46,210 +31,37 @@ pub fn render_template<T: Template>(t: T) -> AppResult<Response> {
 }
 
 pub async fn home(State(state): State<AppState>) -> Result<Response, AppError> {
-    let posts = get_published_posts(&state.db).await?;
-
     render_template(IndexTemplate {
         base: BaseTemplateContext::build_base_context(
             &state,
-            titles::BLOG,
+            titles::HOME,
             constants::seo_descriptions::HOME,
             "/",
-            icons::BLOG,
+            icons::HOME,
         ),
-        posts,
     })
 }
 
-pub async fn blog_post(
-    State(state): State<AppState>,
-    Path(slug): Path<String>,
-) -> AppResult<Response> {
-    let post = get_posts_by_slug(&state.db, slug)
-        .await?
-        .ok_or(AppError::NotFound)?;
-
-    increment_post_views(&state.db, post.id).await?;
-
-    let content_html = markdown_to_html(&post.content);
-    let canonical_path = format!("/{}", post.slug);
-    render_template(BlogPostTemplate {
+pub async fn space4joy_experience(State(state): State<AppState>) -> Result<Response, AppError> {
+    render_template(Space4joyExperienceTemplate {
         base: BaseTemplateContext::build_base_context(
             &state,
-            &post.title,
-            &post.meta_description,
-            &canonical_path,
-            icons::BLOG,
+            titles::SPACE4JOYEXPERIENCE,
+            seo_descriptions::SPACE4JOYEXPERIENCE,
+            endpoints::SPACE4JOYEXPERIENCE,
+            icons::HOME
         ),
-        content_html,
-        post,
     })
 }
 
-pub async fn login_user(
-    State(state): State<AppState>,
-    session: Session,
-    Form(form): Form<LoginForm>,
-) -> impl IntoResponse {
-    // Landmine, to be investigated later.
-    let user = find_user_by_email(&state.db, &form.email)
-        .await
-        .ok()
-        .flatten();
-
-    let hash = user
-        .as_ref()
-        .map(|u| u.password_hash.as_str())
-        .unwrap_or(DUMMY_HASH);
-
-    // Verify password
-    let valid = verify_password(&form.password, hash);
-
-    if !valid || user.is_none() {
-        return Redirect::to("/login");
-    }
-
-    let user = user.unwrap();
-
-    if let Err(error) = session.insert("user_id", user.id).await {
-        tracing::error!(?error, "Failed to create user sessions");
-        return Redirect::to("/login");
-    }
-
-    Redirect::to("/admin")
-}
-
-pub async fn login_page(State(state): State<AppState>) -> impl IntoResponse {
-    render_template(LoginTemplate {
+pub async fn at_your_service(State(state): State<AppState>) -> Result<Response, AppError> {
+    render_template(AtYourServiceTemplate {
         base: BaseTemplateContext::build_base_context(
             &state,
-            titles::LOGIN,
-            constants::seo_descriptions::LOGIN,
-            "/login",
-            icons::LOGIN,
+            titles::ATYOURSERVICE,
+            seo_descriptions::ATYOURSERVICE,
+            endpoints::ATYOURSERVICE,
+            icons::HOME
         ),
     })
-}
-
-// ***** Admin stuff *****
-
-pub async fn admin(State(state): State<AppState>) -> AppResult<Response> {
-    render_template(AdminTemplate {
-        // Temporary values
-        base: BaseTemplateContext::build_base_context(
-            &state,
-            titles::BLOG,
-            constants::seo_descriptions::BLOG,
-            "/admin",
-            icons::DOCS,
-        ),
-    })
-}
-
-pub async fn admin_posts(State(state): State<AppState>) -> AppResult<Response> {
-    let posts = get_all_posts(&state.db).await?;
-
-    render_template(AdminPostsTemplate {
-        base: BaseTemplateContext::build_base_context(
-            &state,
-            "Manage Posts",
-            constants::seo_descriptions::BLOG,
-            "/admin/posts",
-            icons::BLOG,
-        ),
-        posts,
-    })
-}
-
-pub async fn admin_new_post(State(state): State<AppState>) -> AppResult<Response> {
-    render_template(AdminNewPostTemplate {
-        base: BaseTemplateContext::build_base_context(
-            &state,
-            "New Post",
-            constants::seo_descriptions::BLOG,
-            "/admin/new-post",
-            icons::BLOG,
-        ),
-    })
-}
-
-pub async fn admin_create_post(
-    State(state): State<AppState>,
-    Form(form): Form<NewPost>,
-) -> AppResult<Response> {
-    create_post(&state.db, &form).await?;
-
-    Ok(Redirect::to("/admin/posts").into_response())
-}
-
-pub async fn admin_edit_post(
-    Path(post_id): Path<Uuid>,
-    State(state): State<AppState>,
-) -> AppResult<Response> {
-    let post = get_post_by_id(&state.db, post_id)
-        .await?
-        .ok_or(AppError::NotFound)?;
-
-    render_template(AdminEditPostTemplate {
-        base: BaseTemplateContext::build_base_context(
-            &state,
-            "Edit post",
-            constants::seo_descriptions::BLOG,
-            &format!("/admin/posts/{}", post.id),
-            icons::BLOG,
-        ),
-        post,
-    })
-}
-
-pub async fn admin_update_post(
-    Path(post_id): Path<Uuid>,
-    State(state): State<AppState>,
-    Form(form): Form<UpdatePost>,
-) -> AppResult<Response> {
-    let updated = update_post(&state.db, post_id, &form).await?;
-
-    if !updated {
-        return Err(AppError::NotFound);
-    }
-
-    Ok(Redirect::to("/admin/posts").into_response())
-}
-
-pub async fn admin_delete_post(
-    Path(post_id): Path<Uuid>,
-    State(state): State<AppState>,
-) -> AppResult<Response> {
-    let deleted = delete_post(&state.db, post_id).await?;
-
-    if !deleted {
-        return Err(AppError::NotFound);
-    }
-
-    Ok(Redirect::to("/admin/posts").into_response())
-}
-
-pub async fn admin_publish_post(
-    State(state): State<AppState>,
-    Path(post_id): Path<Uuid>,
-) -> AppResult<Response> {
-    let updated = publish_post(&state.db, post_id).await?;
-
-    if !updated {
-        return Err(AppError::NotFound);
-    }
-
-    Ok(Redirect::to(&format!("/admin/posts")).into_response())
-}
-
-pub async fn admin_unpublish_post(
-    State(state): State<AppState>,
-    Path(post_id): Path<Uuid>,
-) -> AppResult<Response> {
-    let updated = unpublish_post(&state.db, post_id).await?;
-
-    if !updated {
-        return Err(AppError::NotFound);
-    }
-
-    Ok(Redirect::to(&format!("/admin/posts")).into_response())
 }

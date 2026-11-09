@@ -1,9 +1,6 @@
-# 📘 Victor's Personal Website
+# ☀️ Space for joy
 
-**Version:** 0.5.1
-**Last updated:** September 30, 2026  
-
-A personal blog, made with the help of ChatGPT, no I didn't use agents nor have I ever touched one. No, I don't know what I'm doing and I'm learning as I go.
+Space for joy is a simple website with mostly static content
 
 ---
 

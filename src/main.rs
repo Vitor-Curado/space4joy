@@ -1,4 +1,4 @@
-use buildhaven::{
+use space4joy::{
     bootstrap::build_listener_and_app, error::AppError, shutdown::graceful_shutdown_signal,
     telemetry::init_tracing,
 };

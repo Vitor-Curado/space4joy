@@ -1,9 +1,7 @@
 use crate::{
     constants::{self, icons, paths::VITE_MANIFEST, titles},
     error::{AppError, AppResult},
-    navbar::DOCS,
-    templates::{BaseTemplateContext, ContactTemplate, DocsTemplate},
-    utils::markdown_to_html,
+    templates::{BaseTemplateContext, ContactTemplate},
 };
 use askama::Template;
 use serde::Deserialize;
@@ -46,47 +44,20 @@ impl Assets {
     }
 
     pub fn generate_all_static_pages(&self) -> AppResult<()> {
-        self.generate_contact()?;
-        self.generate_docs()
+        self.generate_contact()
     }
 
     fn generate_contact(&self) -> AppResult<()> {
         let base = BaseTemplateContext::new(
             titles::CONTACT,
             constants::seo_descriptions::CONTACT,
-            constants::seo_canonical_paths::CONTACT.into(),
+            constants::endpoints::CONTACT.into(),
             icons::CONTACT,
             Arc::new(self.clone()),
-            DOCS,
         );
         let template = ContactTemplate { base };
 
         self.write_static_page("contact", template)
-    }
-
-    fn generate_docs(&self) -> AppResult<()> {
-        for doc in DOCS {
-            let base = BaseTemplateContext::new(
-                doc.title,
-                constants::seo_descriptions::DOCS,
-                constants::seo_canonical_paths::DOCS.into(),
-                icons::DOCS,
-                Arc::new(self.clone()),
-                DOCS,
-            );
-
-            let html = markdown_to_html(doc.markdown);
-
-            let template = DocsTemplate {
-                base,
-                title: doc.title,
-                content_html: html,
-            };
-
-            self.write_static_page(&format!("docs/{}", doc.slug), template)?;
-        }
-
-        Ok(())
     }
 
     fn write_static_page<T: Template>(&self, route: &str, template: T) -> AppResult<()> {

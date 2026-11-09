@@ -1,0 +1,598 @@
+.experience-page {
+    --experience-cream: var(--brand-cream);
+    --experience-brown: var(--brand-brown);
+    --experience-turquoise: var(--brand-turquoise);
+    --experience-teal: var(--brand-teal);
+    --experience-golden: var(--brand-golden);
+    --experience-orange: var(--brand-orange);
+
+    color: var(--experience-brown);
+}
+
+/* 1. INTRODUCTION */
+
+.experience-intro {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 460px;
+    padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 6vw, 5rem);
+
+    background: var(--experience-cream);
+    border-radius: var(--radius-large);
+}
+
+.experience-intro-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 780px;
+}
+
+.experience-intro-title {
+    max-width: 750px;
+    margin-bottom: var(--spacing-large);
+
+    font-family: var(--font-family-serif);
+    font-size: clamp(2.75rem, 6vw, 5rem);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+}
+
+.experience-intro-title span {
+    color: var(--experience-orange);
+    font-style: italic;
+}
+
+.experience-intro-copy {
+    max-width: 680px;
+}
+
+.experience-intro-copy p {
+    margin-bottom: var(--spacing-medium);
+
+    color: var(--color-text-muted);
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-relaxed);
+}
+
+.experience-scroll-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-medium);
+
+    margin-top: var(--spacing-large);
+
+    color: var(--experience-turquoise);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+
+    transition: gap var(--transition-medium);
+}
+
+.experience-scroll-link:hover {
+    gap: var(--spacing-large);
+}
+
+.experience-scroll-link span {
+    font-size: var(--font-size-extra-medium);
+}
+
+
+/* Decorative elements */
+
+.experience-intro-decoration {
+    position: absolute;
+    z-index: 1;
+
+    right: -100px;
+    bottom: -180px;
+
+    width: 430px;
+    height: 430px;
+}
+
+.experience-decoration-circle {
+    position: absolute;
+    inset: 0;
+
+    border: 1px solid rgba(233, 170, 36, 0.4);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 35px rgba(233, 170, 36, 0.07),
+        0 0 0 70px rgba(233, 170, 36, 0.05);
+}
+
+.experience-decoration-text {
+    position: absolute;
+    top: 35px;
+    left: 45px;
+
+    color: rgba(135, 67, 34, 0.4);
+    font-size: var(--font-size-extra-small);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.2em;
+}
+
+
+/* 2. FOUR SPACE4JOY DIMENSIONS */
+
+.experience-spaces {
+    padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.experience-section-header {
+    margin-bottom: var(--spacing-extra-large);
+}
+
+.experience-spaces-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-large);
+}
+
+.experience-space-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    min-height: 300px;
+    padding: clamp(1.75rem, 4vw, 3rem);
+
+    border-radius: var(--radius-large);
+
+    transition:
+        transform var(--transition-medium),
+        box-shadow var(--transition-medium);
+}
+
+.experience-space-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.experience-card-number {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+
+    color: rgba(135, 67, 34, 0.12);
+    font-family: var(--font-family-serif);
+    font-size: 5rem;
+    line-height: 1;
+}
+
+.experience-card-content {
+    position: relative;
+    z-index: 2;
+    max-width: 460px;
+}
+
+.experience-card-label {
+    display: block;
+    margin-bottom: var(--spacing-large);
+    font-size: var(--font-size-extra-small);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.14em;
+}
+
+.experience-card-content h3 {
+    margin-bottom: var(--spacing-medium);
+    font-family: var(--font-family-serif);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-tight);
+}
+
+.experience-card-content h3 span {
+    font-style: italic;
+}
+
+.experience-card-content p {
+    max-width: 430px;
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-relaxed);
+}
+
+.experience-card-accent {
+    position: absolute;
+    z-index: 1;
+    right: -35px;
+    bottom: -65px;
+    width: 170px;
+    height: 170px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    opacity: 0.15;
+
+    box-shadow:
+        0 0 0 20px rgba(255, 255, 255, 0.1),
+        0 0 0 40px rgba(255, 255, 255, 0.08);
+}
+
+
+/* Individual card identities */
+
+.experience-space-you {
+    background: #F8E9C9;
+    color: #874322;
+}
+
+.experience-space-you .experience-card-label {
+    color: #B47A16;
+}
+
+.experience-space-home {
+    background: #DDEDE4;
+    color: #286A53;
+}
+
+.experience-space-home .experience-card-label {
+    color: #258D78;
+}
+
+.experience-space-work {
+    background: #DCEEEF;
+    color: #176F75;
+}
+
+.experience-space-work .experience-card-label {
+    color: #15949A;
+}
+
+.experience-space-leading {
+    background: #F7E3D9;
+    color: #874322;
+}
+
+.experience-space-leading .experience-card-label {
+    color: #C65C2E;
+}
+
+
+/* Four spaces CTA */
+
+.experience-spaces-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-large);
+
+    margin-top: var(--spacing-extra-large);
+    padding: var(--spacing-extra-large);
+
+    text-align: center;
+}
+
+.experience-spaces-cta p {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-medium);
+}
+
+.experience-button {
+    padding: 0.9rem 1.5rem;
+
+    background: var(--experience-turquoise);
+    color: #FFFFFF;
+
+    border-radius: var(--radius-medium);
+}
+
+.experience-button:hover {
+    background: #117C81;
+}
+
+
+/* =========================================
+   3. PRACTICAL APPROACH
+   ========================================= */
+
+.experience-approach {
+    padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+
+    background: #F1E7D7;
+    border-radius: var(--radius-large);
+}
+
+.experience-approach-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+
+    max-width: var(--max-width-page);
+    margin-inline: auto;
+}
+
+.experience-approach-heading h2 {
+    max-width: 500px;
+
+    font-family: var(--font-family-serif);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-tight);
+}
+
+.experience-approach-heading h2 span {
+    display: block;
+    margin-top: var(--spacing-small);
+
+    color: var(--experience-orange);
+    font-style: italic;
+}
+
+.experience-approach-copy p {
+    margin-bottom: var(--spacing-large);
+
+    color: var(--color-text-muted);
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-relaxed);
+}
+
+.experience-approach-copy strong {
+    color: var(--experience-brown);
+}
+
+
+/* =========================================
+   4. PLAYBOOK
+   ========================================= */
+
+.experience-playbook {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    margin-top: var(--spacing-extra-large);
+    margin-bottom: var(--spacing-extra-large);
+
+    padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+
+    background: var(--experience-brown);
+    color: #FFFFFF;
+
+    border-radius: var(--radius-large);
+}
+
+.experience-playbook-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: var(--spacing-extra-large);
+
+    max-width: var(--max-width-page);
+    margin-inline: auto;
+}
+
+.experience-playbook-content {
+    position: relative;
+    z-index: 2;
+}
+
+.experience-playbook .section-eyebrow {
+    color: var(--experience-golden);
+}
+
+.experience-playbook-content h2 {
+    max-width: 550px;
+    margin-bottom: var(--spacing-large);
+
+    font-family: var(--font-family-serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-tight);
+}
+
+.experience-playbook-content h2 span {
+    color: var(--experience-golden);
+    font-style: italic;
+}
+
+.experience-playbook-description {
+    max-width: 500px;
+    margin-bottom: var(--spacing-extra-large);
+
+    color: rgba(255, 255, 255, 0.85);
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-relaxed);
+}
+
+.experience-playbook-button {
+    padding: 0.9rem 1.5rem;
+
+    background: var(--experience-golden);
+    color: var(--experience-brown);
+}
+
+.experience-playbook-button:hover {
+    background: #F2BC48;
+}
+
+
+/* Playbook visual */
+
+.experience-playbook-visual {
+    position: relative;
+
+    display: grid;
+    place-items: center;
+
+    width: min(100%, 350px);
+    aspect-ratio: 1;
+    margin-inline: auto;
+}
+
+.playbook-orbit {
+    position: absolute;
+
+    border: 1px solid rgba(233, 170, 36, 0.35);
+    border-radius: 50%;
+}
+
+.playbook-orbit-outer {
+    inset: 0;
+}
+
+.playbook-orbit-inner {
+    inset: 12%;
+}
+
+.playbook-visual-content {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-small);
+
+    width: 70%;
+    aspect-ratio: 0.8;
+    justify-content: center;
+
+    padding: var(--spacing-large);
+
+    background: var(--experience-cream);
+    color: var(--experience-brown);
+
+    border-radius: var(--radius-small);
+    box-shadow: var(--shadow-large);
+
+    transform: rotate(-5deg);
+}
+
+.playbook-visual-content > span:first-child {
+    font-size: var(--font-size-extra-small);
+    letter-spacing: 0.3em;
+}
+
+.playbook-visual-content strong {
+    font-family: var(--font-family-serif);
+    font-size: clamp(1.1rem, 3vw, 1.7rem);
+}
+
+.playbook-visual-highlight {
+    color: var(--experience-orange);
+    font-family: var(--font-family-serif);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-style: italic;
+}
+
+.playbook-visual-tagline {
+    margin-top: var(--spacing-large);
+
+    font-size: 0.55rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+}
+
+
+/* =========================================
+   5. RESPONSIVENESS
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .experience-intro-decoration {
+        right: -220px;
+        opacity: 0.5;
+    }
+
+    .experience-approach-inner {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-large);
+    }
+
+    .experience-playbook-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-playbook-visual {
+        width: min(75%, 300px);
+    }
+}
+
+
+@media (max-width: 760px) {
+
+    .experience-intro {
+        min-height: auto;
+        padding: 3.5rem 1.5rem;
+    }
+
+    .experience-intro-title {
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
+    }
+
+    .experience-intro-copy p {
+        font-size: var(--font-size-small);
+    }
+
+    .experience-spaces-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-space-card {
+        min-height: 270px;
+    }
+
+    .experience-card-content h3 {
+        font-size: 2.3rem;
+    }
+
+    .experience-spaces-cta {
+        padding-inline: var(--spacing-medium);
+    }
+
+    .experience-approach {
+        padding: 3rem 1.5rem;
+    }
+
+    .experience-approach-heading h2 {
+        font-size: 2.5rem;
+    }
+
+    .experience-approach-copy p {
+        font-size: var(--font-size-small);
+    }
+
+    .experience-playbook {
+        padding: 3rem 1.5rem;
+    }
+
+    .experience-playbook-content h2 {
+        font-size: 2.8rem;
+    }
+
+    .experience-playbook-description {
+        font-size: var(--font-size-small);
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .experience-space-card,
+    .experience-scroll-link {
+        transition: none;
+    }
+
+    .experience-space-card:hover {
+        transform: none;
+    }
+
+    .experience-scroll-link:hover {
+        gap: var(--spacing-medium);
+    }
+}
