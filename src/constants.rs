@@ -5,6 +5,7 @@ pub mod endpoints {
     pub const CONTACT: &str = "/contact";
     pub const SPACE4JOYEXPERIENCE: &str = "/space4joy-experience";
     pub const ATYOURSERVICE: &str = "/at-your-service";
+    pub const ABOUT: &str = "/about";
 }
 
 pub mod seo_descriptions {
@@ -12,6 +13,7 @@ pub mod seo_descriptions {
     pub const SPACE4JOYEXPERIENCE: &str = "Learn the practical ways to experience joy";
     pub const ATYOURSERVICE: &str = "Here, you may learn...";
     pub const CONTACT: &str = "Contact information to get in touch with me";
+    pub const ABOUT: &str = "Meet the founder of space4joy";
 }
 
 pub mod contact_information {
@@ -31,6 +33,7 @@ pub mod titles {
     pub const SPACE4JOYEXPERIENCE: &str = "Space4Joy experience";
     pub const ATYOURSERVICE: &str = "At your service";
     pub const CONTACT: &str = "Contact";
+    pub const ABOUT: &str = "About";
 }
 
 // Rarely changes

@@ -3,7 +3,8 @@ use crate::{
     error::{AppError, AppResult},
     state::AppState,
     templates::{
-        AtYourServiceTemplate, BaseTemplateContext, IndexTemplate, Space4joyExperienceTemplate,
+        AboutTemplate, AtYourServiceTemplate, BaseTemplateContext, IndexTemplate,
+        Space4joyExperienceTemplate,
     },
 };
 
@@ -49,7 +50,7 @@ pub async fn space4joy_experience(State(state): State<AppState>) -> Result<Respo
             titles::SPACE4JOYEXPERIENCE,
             seo_descriptions::SPACE4JOYEXPERIENCE,
             endpoints::SPACE4JOYEXPERIENCE,
-            icons::HOME
+            icons::HOME,
         ),
     })
 }
@@ -61,7 +62,19 @@ pub async fn at_your_service(State(state): State<AppState>) -> Result<Response, 
             titles::ATYOURSERVICE,
             seo_descriptions::ATYOURSERVICE,
             endpoints::ATYOURSERVICE,
-            icons::HOME
+            icons::HOME,
+        ),
+    })
+}
+
+pub async fn about(State(state): State<AppState>) -> Result<Response, AppError> {
+    render_template(AboutTemplate {
+        base: BaseTemplateContext::build_base_context(
+            &state,
+            titles::ABOUT,
+            seo_descriptions::ABOUT,
+            endpoints::ABOUT,
+            icons::HOME,
         ),
     })
 }

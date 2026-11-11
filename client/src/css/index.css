@@ -6,6 +6,7 @@
 @import "./components/forms.css";
 @import "./components/header.css";
 @import "./components/sections.css";
+@import "./page-specific/about.css";
 @import "./page-specific/at-your-service.css";
 @import "./page-specific/contact-us.css";
 @import "./page-specific/home.css";

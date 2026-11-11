@@ -78,3 +78,9 @@ pub struct AtYourServiceTemplate {
 pub struct ContactTemplate {
     pub base: BaseTemplateContext,
 }
+
+#[derive(Template)]
+#[template(path = "pages/about.html")]
+pub struct AboutTemplate {
+    pub base: BaseTemplateContext,
+}
