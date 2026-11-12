@@ -62,13 +62,13 @@ pub struct IndexTemplate {
 }
 
 #[derive(Template)]
-#[template(path = "pages/space4joy-experience.html")]
+#[template(path = "pages/experiences.html")]
 pub struct Space4joyExperienceTemplate {
     pub base: BaseTemplateContext,
 }
 
 #[derive(Template)]
-#[template(path = "pages/at-your-service.html")]
+#[template(path = "pages/services.html")]
 pub struct AtYourServiceTemplate {
     pub base: BaseTemplateContext,
 }

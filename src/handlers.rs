@@ -47,9 +47,9 @@ pub async fn space4joy_experience(State(state): State<AppState>) -> Result<Respo
     render_template(Space4joyExperienceTemplate {
         base: BaseTemplateContext::build_base_context(
             &state,
-            titles::SPACE4JOYEXPERIENCE,
-            seo_descriptions::SPACE4JOYEXPERIENCE,
-            endpoints::SPACE4JOYEXPERIENCE,
+            titles::EXPERIENCES,
+            seo_descriptions::EXPERIENCES,
+            endpoints::EXPERIENCES,
             icons::HOME,
         ),
     })
@@ -59,9 +59,9 @@ pub async fn at_your_service(State(state): State<AppState>) -> Result<Response, 
     render_template(AtYourServiceTemplate {
         base: BaseTemplateContext::build_base_context(
             &state,
-            titles::ATYOURSERVICE,
-            seo_descriptions::ATYOURSERVICE,
-            endpoints::ATYOURSERVICE,
+            titles::SERVICES,
+            seo_descriptions::SERVICES,
+            endpoints::SERVICES,
             icons::HOME,
         ),
     })

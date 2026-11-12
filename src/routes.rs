@@ -7,9 +7,9 @@ pub fn public_routes() -> Router<AppState> {
     Router::new()
         .route(constants::endpoints::HOME, get(home))
         .route(
-            constants::endpoints::SPACE4JOYEXPERIENCE,
+            constants::endpoints::EXPERIENCES,
             get(space4joy_experience),
         )
-        .route(endpoints::ATYOURSERVICE, get(at_your_service))
+        .route(endpoints::SERVICES, get(at_your_service))
         .route(endpoints::ABOUT, get(about))
 }

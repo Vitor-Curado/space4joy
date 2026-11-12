@@ -25,8 +25,6 @@ RUN cargo build --release
 
 # ---------- Runtime stage ----------
 FROM debian:bookworm-slim
-# For later:
-#FROM gcr.io/distroless/cc-debian12
 
 WORKDIR /app
 

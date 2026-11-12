@@ -3,15 +3,15 @@
 pub mod endpoints {
     pub const HOME: &str = "/";
     pub const CONTACT: &str = "/contact";
-    pub const SPACE4JOYEXPERIENCE: &str = "/space4joy-experience";
-    pub const ATYOURSERVICE: &str = "/at-your-service";
+    pub const EXPERIENCES: &str = "/experiences";
+    pub const SERVICES: &str = "/services";
     pub const ABOUT: &str = "/about";
 }
 
 pub mod seo_descriptions {
     pub const HOME: &str = "Less Stress. More Joy. Create Room to THRIVE.";
-    pub const SPACE4JOYEXPERIENCE: &str = "Learn the practical ways to experience joy";
-    pub const ATYOURSERVICE: &str = "Here, you may learn...";
+    pub const EXPERIENCES: &str = "Learn the practical ways to experience joy";
+    pub const SERVICES: &str = "Here, you may learn...";
     pub const CONTACT: &str = "Contact information to get in touch with me";
     pub const ABOUT: &str = "Meet the founder of space4joy";
 }
@@ -30,8 +30,8 @@ pub mod icons {
 
 pub mod titles {
     pub const HOME: &str = "Space4Joy";
-    pub const SPACE4JOYEXPERIENCE: &str = "Space4Joy experience";
-    pub const ATYOURSERVICE: &str = "At your service";
+    pub const EXPERIENCES: &str = "Space4Joy experience";
+    pub const SERVICES: &str = "At your service";
     pub const CONTACT: &str = "Contact";
     pub const ABOUT: &str = "About";
 }
