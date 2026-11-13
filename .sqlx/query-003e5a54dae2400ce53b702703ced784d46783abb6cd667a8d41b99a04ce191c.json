@@ -1,0 +1,21 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "WITH upserted_contact AS (\n    INSERT INTO contacts (\n        id,\n        name,\n        email,\n        country,\n        city,\n        marketing_consent,\n        consent_recorded_at,\n        consent_source\n    )\n    VALUES (\n        $1,\n        $2,\n        $3,\n        $4,\n        $5,\n        $6,\n        CASE WHEN $6 THEN NOW() ELSE NULL END,\n        CASE WHEN $6 THEN 'connect_form' ELSE NULL END\n    )\n    ON CONFLICT (LOWER(email))\n    DO UPDATE SET\n        name = EXCLUDED.name,\n        country = EXCLUDED.country,\n        city = EXCLUDED.city,\n\n        -- Only an explicit opt-in changes consent.\n        marketing_consent =\n            contacts.marketing_consent OR EXCLUDED.marketing_consent,\n\n        consent_recorded_at =\n            CASE\n                WHEN EXCLUDED.marketing_consent THEN NOW()\n                ELSE contacts.consent_recorded_at\n            END,\n\n        consent_source =\n            CASE\n                WHEN EXCLUDED.marketing_consent THEN 'connect_form'\n                ELSE contacts.consent_source\n            END,\n\n        unsubscribed_at =\n            CASE\n                WHEN EXCLUDED.marketing_consent THEN NULL\n                ELSE contacts.unsubscribed_at\n            END\n\n    RETURNING id\n)\n\nINSERT INTO messages (\n    id,\n    contact_id,\n    message\n)\nSELECT\n    $7,\n    id,\n    $8\nFROM upserted_contact;",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Uuid",
+        "Text",
+        "Text",
+        "Text",
+        "Text",
+        "Bool",
+        "Uuid",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "003e5a54dae2400ce53b702703ced784d46783abb6cd667a8d41b99a04ce191c"
+}

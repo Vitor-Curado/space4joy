@@ -1,39 +1,31 @@
-CREATE TABLE users (
+CREATE TABLE contacts (
     id UUID PRIMARY KEY,
-    username TEXT NOT NULL UNIQUE,
-    email TEXT NOT NULL UNIQUE,
-    password_hash TEXT NOT NULL,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    country TEXT NOT NULL,
+    city TEXT NOT NULL,
+    marketing_consent BOOLEAN NOT NULL DEFAULT FALSE,
+    consent_recorded_at TIMESTAMPTZ,
+    consent_source TEXT,
+    unsubscribed_at TIMESTAMPTZ,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+
+    CONSTRAINT contacts_consent_timestamp_check
+        CHECK (
+            (marketing_consent = TRUE
+                AND consent_recorded_at IS NOT NULL
+                AND unsubscribed_at IS NULL)
+            OR
+            (marketing_consent = FALSE)
+        )
 );
 
-CREATE TABLE posts (
+CREATE UNIQUE INDEX contacts_email_unique
+ON contacts (LOWER(email));
+
+CREATE TABLE messages (
     id UUID PRIMARY KEY,
-    title TEXT NOT NULL,
-    seo_title TEXT NOT NULL,
-    meta_description TEXT NOT NULL,
-    slug TEXT NOT NULL UNIQUE,
-    content TEXT NOT NULL,
-    status TEXT NOT NULL DEFAULT 'draft',
-    views INTEGER NOT NULL DEFAULT 0,
-    published_at TIMESTAMPTZ,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-
-CREATE TABLE tags (
-    id UUID PRIMARY KEY,
-    name TEXT NOT NULL UNIQUE,
-    slug TEXT NOT NULL UNIQUE,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    colour TEXT NOT NULL DEFAULT '#000000',
-
-    CONSTRAINT tags_name_not_empty 
-        CHECK (length(trim(name)) > 0)
-);
-
-CREATE TABLE posts_tags (
-    post_id UUID NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
-    tag_id UUID NOT NULL REFERENCES tags(id) ON DELETE CASCADE,
-    PRIMARY KEY (post_id, tag_id)
+    contact_id UUID NOT NULL REFERENCES contacts(id),
+    message TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

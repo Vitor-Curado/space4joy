@@ -1,16 +1,14 @@
 use crate::{
-    constants::{self, endpoints, icons, seo_descriptions, titles},
+    constants::routes,
     error::{AppError, AppResult},
+    models::ContactSubmission,
+    repository,
     state::AppState,
-    templates::{
-        AboutTemplate, AtYourServiceTemplate, BaseTemplateContext, IndexTemplate,
-        Space4joyExperienceTemplate,
-    },
 };
 
 use axum::{
-    extract::State,
-    response::{Html, IntoResponse, Response},
+    extract::{Form, State},
+    response::{Html, IntoResponse, Redirect, Response},
 };
 
 use askama::Template;
@@ -31,50 +29,47 @@ pub fn render_template<T: Template>(t: T) -> AppResult<Response> {
     Ok(Html(html).into_response())
 }
 
-pub async fn home(State(state): State<AppState>) -> Result<Response, AppError> {
-    render_template(IndexTemplate {
-        base: BaseTemplateContext::build_base_context(
-            &state,
-            titles::HOME,
-            constants::seo_descriptions::HOME,
-            "/",
-            icons::HOME,
-        ),
-    })
-}
+pub async fn create_contact(
+    State(state): State<AppState>,
+    Form(mut submission): Form<ContactSubmission>,
+) -> AppResult<Redirect> {
+    // Normalize incoming data.
+    submission.name = submission.name.trim().to_string();
+    submission.email = submission.email.trim().to_ascii_lowercase();
+    submission.country = submission.country.trim().to_string();
+    submission.city = submission.city.trim().to_string();
+    submission.message = submission.message.trim().to_string();
 
-pub async fn space4joy_experience(State(state): State<AppState>) -> Result<Response, AppError> {
-    render_template(Space4joyExperienceTemplate {
-        base: BaseTemplateContext::build_base_context(
-            &state,
-            titles::EXPERIENCES,
-            seo_descriptions::EXPERIENCES,
-            endpoints::EXPERIENCES,
-            icons::HOME,
-        ),
-    })
-}
+    // Basic validation.
+    if submission.name.is_empty()
+        || submission.email.is_empty()
+        || submission.country.is_empty()
+        || submission.city.is_empty()
+        || submission.message.is_empty()
+    {
+        return Err(AppError::BadRequest(
+            "All contact fields are required.".to_string(),
+        ));
+    }
 
-pub async fn at_your_service(State(state): State<AppState>) -> Result<Response, AppError> {
-    render_template(AtYourServiceTemplate {
-        base: BaseTemplateContext::build_base_context(
-            &state,
-            titles::SERVICES,
-            seo_descriptions::SERVICES,
-            endpoints::SERVICES,
-            icons::HOME,
-        ),
-    })
-}
+    if submission.name.len() > 120
+        || submission.email.len() > 254
+        || submission.country.len() > 100
+        || submission.city.len() > 100
+        || submission.message.len() > 5000
+    {
+        return Err(AppError::BadRequest(
+            "One or more fields exceed the permitted length.".to_string(),
+        ));
+    }
 
-pub async fn about(State(state): State<AppState>) -> Result<Response, AppError> {
-    render_template(AboutTemplate {
-        base: BaseTemplateContext::build_base_context(
-            &state,
-            titles::ABOUT,
-            seo_descriptions::ABOUT,
-            endpoints::ABOUT,
-            icons::HOME,
-        ),
-    })
+    if !submission.email.contains('@') {
+        return Err(AppError::BadRequest("Invalid email address.".to_string()));
+    }
+
+    // Persist contact and message.
+    repository::create_contact_and_message(&state.db, &submission).await?;
+
+    // Post/Redirect/Get.
+    Ok(Redirect::to(routes::THANK_YOU))
 }

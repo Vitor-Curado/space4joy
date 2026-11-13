@@ -1,18 +1,31 @@
-use crate::{assets::Assets, state::AppState};
+use crate::{assets::Assets, constants::locales, state::AppState};
 use askama::Template;
+use serde_json::Value;
 use std::sync::Arc;
 
 #[derive(Clone)]
-pub struct SeoMetadata {
+pub struct PageMetadata {
     pub title: String,
     pub description: String,
     pub canonical_url: String,
+    pub locale: String,
+    pub favicon: &'static str,
+    pub json_ld: Vec<Value>,
+}
+
+#[derive(Clone)]
+pub struct OpenGraphMetadata {
+    pub title: String,
+    pub description: String,
+    pub image: Option<String>,
+    pub locale: String,
+    pub og_type: &'static str,
 }
 
 #[derive(Clone)]
 pub struct BaseTemplateContext {
-    pub seo: SeoMetadata,
-    pub favicon: &'static str,
+    pub page: PageMetadata,
+    pub open_graph: OpenGraphMetadata,
     pub assets: Arc<Assets>,
 }
 
@@ -24,13 +37,25 @@ impl BaseTemplateContext {
         favicon: &'static str,
         assets: Arc<Assets>,
     ) -> Self {
+        let title = title.into();
+        let description = description.into();
+
         Self {
-            seo: SeoMetadata {
-                title: title.into(),
-                description: description.into(),
+            page: PageMetadata {
+                title: title.clone(),
+                description: description.clone(),
                 canonical_url,
+                locale: locales::ENGLISH.into(),
+                favicon,
+                json_ld: Vec::new(),
             },
-            favicon,
+            open_graph: OpenGraphMetadata {
+                title,
+                description,
+                image: None,
+                locale: locales::ENGLISH.into(),
+                og_type: "website",
+            },
             assets,
         }
     }
@@ -56,31 +81,37 @@ impl BaseTemplateContext {
 }
 
 #[derive(Template)]
-#[template(path = "pages/index.html")]
-pub struct IndexTemplate {
+#[template(path = "pages/home.html")]
+pub struct HomeTemplate {
     pub base: BaseTemplateContext,
 }
 
 #[derive(Template)]
 #[template(path = "pages/experiences.html")]
-pub struct Space4joyExperienceTemplate {
+pub struct ExperiencesTemplate {
     pub base: BaseTemplateContext,
 }
 
 #[derive(Template)]
 #[template(path = "pages/services.html")]
-pub struct AtYourServiceTemplate {
-    pub base: BaseTemplateContext,
-}
-
-#[derive(Template)]
-#[template(path = "pages/contact.html")]
-pub struct ContactTemplate {
+pub struct ServicesTemplate {
     pub base: BaseTemplateContext,
 }
 
 #[derive(Template)]
 #[template(path = "pages/about.html")]
 pub struct AboutTemplate {
+    pub base: BaseTemplateContext,
+}
+
+#[derive(Template)]
+#[template(path = "pages/connect.html")]
+pub struct ConnectTemplate {
+    pub base: BaseTemplateContext,
+}
+
+#[derive(Template)]
+#[template(path = "pages/thank-you.html")]
+pub struct ThankYouTemplate {
     pub base: BaseTemplateContext,
 }

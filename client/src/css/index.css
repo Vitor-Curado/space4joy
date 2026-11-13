@@ -7,10 +7,11 @@
 @import "./components/header.css";
 @import "./components/sections.css";
 @import "./page-specific/about.css";
-@import "./page-specific/at-your-service.css";
-@import "./page-specific/contact-us.css";
+@import "./page-specific/connect.css";
+@import "./page-specific/experiences.css";
 @import "./page-specific/home.css";
-@import "./page-specific/space4joy-experience.css";
+@import "./page-specific/services.css";
+@import "./page-specific/thank-you.css";
 @import "./partial-specific/footer.css";
 @import "./partial-specific/navbar.css";
 @import "./aspect.css";

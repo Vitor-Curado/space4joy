@@ -1,0 +1,396 @@
+/* SPACE4JOY — CONNECT */
+
+.connect-page {
+    --connect-cream: var(--brand-cream);
+    --connect-brown: var(--brand-brown);
+    --connect-turquoise: var(--brand-turquoise);
+    --connect-teal: var(--brand-teal);
+    --connect-golden: var(--brand-golden);
+    --connect-orange: var(--brand-orange);
+
+    color: var(--connect-brown);
+}
+
+
+/* 1. HERO */
+
+.connect-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 390px;
+
+    padding: clamp(3.5rem, 8vw, 6.5rem)
+        clamp(1.5rem, 6vw, 5rem);
+
+    background: var(--connect-cream);
+    border-radius: var(--radius-large);
+}
+
+.connect-hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 780px;
+}
+
+.connect-eyebrow {
+    display: block;
+
+    margin-bottom: var(--spacing-large);
+
+    color: var(--connect-teal);
+
+    font-size: var(--font-size-extra-small);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.connect-title {
+    max-width: 700px;
+
+    margin-bottom: var(--spacing-large);
+
+    font-family: var(--font-family-serif);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+}
+
+.connect-title span {
+    color: var(--connect-orange);
+    font-style: italic;
+}
+
+.connect-description {
+    max-width: 620px;
+}
+
+.connect-description p {
+    margin: 0;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-relaxed);
+}
+
+
+/* Decorative geometry */
+
+.connect-hero-decoration {
+    position: absolute;
+    z-index: 1;
+
+    right: -100px;
+    bottom: -190px;
+
+    width: 440px;
+    height: 440px;
+}
+
+.connect-decoration-circle {
+    position: absolute;
+    inset: 0;
+
+    border: 1px solid rgba(233, 170, 36, 0.4);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 35px rgba(233, 170, 36, 0.07),
+        0 0 0 70px rgba(233, 170, 36, 0.05),
+        0 0 0 105px rgba(233, 170, 36, 0.03);
+}
+
+.connect-decoration-text {
+    position: absolute;
+
+    top: 35px;
+    left: 45px;
+
+    color: rgba(135, 67, 34, 0.4);
+
+    font-size: var(--font-size-extra-small);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.2em;
+}
+
+
+/* 2. FORM SECTION */
+
+.connect-form-section {
+    padding: clamp(4rem, 8vw, 7rem) var(--spacing-large);
+}
+
+.connect-form-container {
+    width: min(100%, 760px);
+    margin-inline: auto;
+}
+
+
+/* Form introduction */
+
+.connect-form-header {
+    max-width: 620px;
+
+    margin-inline: auto;
+    margin-bottom: var(--spacing-extra-large);
+
+    text-align: center;
+}
+
+.connect-form-header .section-eyebrow {
+    color: var(--connect-teal);
+}
+
+.connect-form-title {
+    margin-bottom: var(--spacing-medium);
+
+    font-family: var(--font-family-serif);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.025em;
+}
+
+.connect-form-description {
+    max-width: 560px;
+
+    margin-inline: auto;
+
+    color: var(--color-text-muted);
+
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-relaxed);
+}
+
+
+/* 3. FORM */
+
+.connect-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+
+    padding: clamp(1.75rem, 5vw, 3.5rem);
+
+    background: var(--color-surface-alt);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-large);
+
+    box-shadow: var(--shadow-soft);
+}
+
+.connect-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+}
+
+.connect-form-field label {
+    color: var(--connect-brown);
+
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-semibold);
+}
+
+.connect-form-field input {
+    width: 100%;
+
+    padding: 0.9rem 1rem;
+
+    background: var(--color-surface);
+
+    color: var(--connect-brown);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+
+    font-family: inherit;
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-normal);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.connect-form-field input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.connect-form-field input:hover {
+    border-color: rgba(21, 148, 154, 0.45);
+}
+
+.connect-form-field input:focus {
+    border-color: var(--connect-turquoise);
+
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px rgba(21, 148, 154, 0.12);
+}
+
+
+/* Country + City */
+
+.connect-form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: var(--spacing-large);
+}
+
+
+/* Submit */
+
+.connect-form-actions {
+    display: flex;
+    justify-content: center;
+
+    margin-top: var(--spacing-small);
+}
+
+.connect-submit-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-small);
+
+    padding: 0.95rem 1.75rem;
+
+    background: var(--connect-turquoise);
+    color: #FFFFFF;
+
+    border: 1px solid transparent;
+    border-radius: var(--radius-medium);
+
+    font-family: inherit;
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+
+    cursor: pointer;
+
+    transition:
+        background var(--transition-medium),
+        transform var(--transition-medium);
+}
+
+.connect-submit-button:hover {
+    background: #117C81;
+    transform: translateY(-2px);
+}
+
+.connect-submit-button span {
+    transition: transform var(--transition-medium);
+}
+
+.connect-submit-button:hover span {
+    transform: translateX(4px);
+}
+
+.connect-submit-button:focus-visible {
+    outline: 3px solid var(--connect-golden);
+    outline-offset: 4px;
+}
+
+
+/* 4. RESPONSIVENESS */
+
+@media (max-width: 900px) {
+
+    .connect-hero-decoration {
+        right: -220px;
+        opacity: 0.5;
+    }
+}
+
+
+@media (max-width: 760px) {
+    .connect-hero {
+        min-height: auto;
+
+        padding: 3.5rem 1.5rem;
+    }
+
+    .connect-title {
+        font-size: clamp(2.7rem, 10vw, 3.7rem);
+    }
+
+    .connect-description p {
+        font-size: var(--font-size-small);
+    }
+
+    .connect-form-section {
+        padding: var(--spacing-extra-large) var(--spacing-medium);
+    }
+
+    .connect-form {
+        padding: var(--spacing-large);
+    }
+
+    .connect-form-title {
+        font-size: 2.5rem;
+    }
+
+    .connect-form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .connect-hero {
+        padding: 3rem 1.25rem;
+    }
+
+    .connect-title {
+        font-size: 2.6rem;
+    }
+
+    .connect-form {
+        padding: var(--spacing-medium);
+    }
+
+    .connect-submit-button {
+        width: 100%;
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    .connect-form-field input,
+    .connect-submit-button,
+    .connect-submit-button span {
+        transition: none;
+    }
+
+    .connect-submit-button:hover {
+        transform: none;
+    }
+
+    .connect-submit-button:hover span {
+        transform: none;
+    }
+}
+
+.connect-form-field input,
+.connect-form-field textarea {
+    width: 100%;
+}
+
+.connect-form-field textarea {
+    min-height: 150px;
+    resize: vertical;
+    font: inherit;
+}

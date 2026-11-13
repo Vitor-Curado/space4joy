@@ -1,4 +1,5 @@
 use crate::{
+    constants::routes,
     cors::apply_cors,
     logging::apply_logging,
     metrics::{init_metrics, metrics_endpoint, record_http_metrics},
@@ -25,14 +26,24 @@ pub fn app(state: AppState, session_store: PostgresStore) -> Router {
     let dist_service = ServeDir::new("dist")
         .precompressed_br()
         .precompressed_gzip();
-    let contact_service = ServeDir::new("static/contact")
+    let about_service = ServeDir::new("static/about")
         .precompressed_br()
         .precompressed_gzip();
-    let docs_service = ServeDir::new("static/docs/")
-        .redirect_path_prefix("/docs")
+    let experiences_service = ServeDir::new("static/experiences")
         .precompressed_br()
         .precompressed_gzip();
-
+    let home_service = ServeDir::new("static/home")
+        .precompressed_br()
+        .precompressed_gzip();
+    let services_service = ServeDir::new("static/services")
+        .precompressed_br()
+        .precompressed_gzip();
+    let connect_service = ServeDir::new("static/connect")
+        .precompressed_br()
+        .precompressed_gzip();
+    let thanks_service = ServeDir::new("static/thanks")
+        .precompressed_br()
+        .precompressed_gzip();
     let session_layer = SessionManagerLayer::new(session_store)
         .with_name(crate::constants::cookies::SESSION_ID)
         .with_http_only(true)
@@ -51,8 +62,15 @@ pub fn app(state: AppState, session_store: PostgresStore) -> Router {
         .layer(session_layer)
         .nest_service("/media", media_service)
         .nest_service("/dist", dist_service)
-        .nest_service("/contact", contact_service)
-        .nest_service("/docs", docs_service)
+        .nest_service(routes::ABOUT, about_service)
+        .nest_service(routes::EXPERIENCES, experiences_service)
+        .nest_service(routes::SERVICES, services_service)
+        .nest_service(
+            &format!("{}/", routes::CONNECT.trim_end_matches('/')),
+            connect_service,
+        )
+        .nest_service(routes::THANK_YOU, thanks_service)
+        .fallback_service(home_service)
         .layer(CompressionLayer::new().br(true).gzip(true).deflate(true))
         .layer(SetRequestIdLayer::x_request_id(MakeRequestUuid))
         .layer(PropagateRequestIdLayer::x_request_id())

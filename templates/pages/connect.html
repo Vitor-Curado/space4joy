@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="connect-page">
+
+    <!-- Page Introduction -->
+    <section class="connect-hero" aria-labelledby="connect-title">
+        <div class="connect-hero-content">
+            <p class="connect-eyebrow">CONNECT WITH SPACE4JOY</p>
+
+            <h1 class="connect-title" id="connect-title">
+                Let's make space for <span>JOY.</span>
+            </h1>
+
+            <div class="connect-description">
+                <p>
+                    Tell us a little about yourself and where you're joining
+                    us from. We'd love to stay connected.
+                </p>
+            </div>
+        </div>
+
+        <div class="connect-hero-decoration" aria-hidden="true">
+            <span class="connect-decoration-circle"></span>
+            <span class="connect-decoration-text">MAKE ROOM FOR JOY</span>
+        </div>
+    </section>
+
+
+    <!-- Connection Form -->
+    <section
+        class="connect-form-section"
+        aria-labelledby="connect-form-title"
+    >
+        <div class="connect-form-container">
+
+            <header class="connect-form-header">
+                <p class="section-eyebrow">STAY CONNECTED</p>
+
+                <h2 class="connect-form-title" id="connect-form-title">
+                    We'd love to know who you are.
+                </h2>
+
+                <p class="connect-form-description">
+                    Share your details below and we'll have a way to stay
+                    connected with you.
+                </p>
+            </header>
+
+
+            <form class="connect-form" action="/connect" method="post">
+
+                <div class="connect-form-field">
+                    <label for="name">Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
+
+
+                <div class="connect-form-field">
+                    <label for="email">Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+
+                <div class="connect-form-row">
+
+                    <div class="connect-form-field">
+                        <label for="country">Country</label>
+
+                        <input
+                            type="text"
+                            id="country"
+                            name="country"
+                            autocomplete="country-name"
+                            required
+                        >
+                    </div>
+
+                    <div class="connect-form-field">
+                        <label for="city">City</label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            autocomplete="address-level2"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <!-- Message -->
+                <div class="connect-form-field">
+                    <label for="message">Your Message</label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        placeholder="Tell us what's on your mind..."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="connect-form-field">
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="marketing_consent"
+                            value="true"
+                        >
+                        I agree to receive occasional emails and updates from SPACE4JOY.
+                        I understand that I can unsubscribe at any time.
+                    </label>
+                </div>
+                <!-- Submission -->
+                <div class="connect-form-actions">
+                    <button
+                        type="submit"
+                        class="connect-submit-button"
+                    >
+                        Connect with SPACE4JOY
+                        <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+
+</div>
+{% endblock %}

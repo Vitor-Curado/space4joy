@@ -3,63 +3,20 @@
         <li>
             <a href="/" class="navbar-brand" aria-label="SPACE4JOY home"> SPACE4JOY </a>
         </li>
-        <li class="dropdown" data-dropdown>
-            <button
-                type="button"
-                class="dropdown-button"
-                aria-expanded="false"
-                aria-controls="Experience-dropdown-menu"
-            >
-                Experience
-                <span class="dropdown-chevron" aria-hidden="true"> &#9662; </span>
-            </button>
-
-            <ul class="dropdown-menu">
-                <li>
-                    <a href="/joy-for-you" class="dropdown-link"> JOY for YOU </a>
-                </li>
-                <li>
-                    <a href="/joy-at-home" class="dropdown-link"> JOY at HOME </a>
-                </li>
-                <li>
-                    <a href="/joy-at-work" class="dropdown-link"> JOY at WORK </a>
-                </li>
-                <li>
-                    <a href="/leading-with-joy" class="dropdown-link"> LEADING with JOY </a>
-                </li>
-            </ul>
-        </li>
-        <li class="dropdown" data-dropdown>
-            <button
-                type="button"
-                class="dropdown-button"
-                aria-expanded="false"
-                aria-controls="at-your-service-dropdown-menu"
-            >
-                At Your Service
-                <span class="dropdown-chevron" aria-hidden="true"> &#9662; </span>
-            </button>
-
-            <ul class="dropdown-menu">
-                <li>
-                    <a href="/for-individuals" class="dropdown-link"> For individuals </a>
-                </li>
-                <li>
-                    <a href="/for-organisations-and-teams" class="dropdown-link"> For Organizations & Teams </a>
-                </li>
-            </ul>
+        <li>
+            <a href="{{ crate::constants::routes::EXPERIENCES }}" class="navbar-link"> Experiences </a>
         </li>
         <li>
-            <a href="{{ crate::constants::endpoints::ABOUT }}" class="navbar-link"> Founder </a>
+            <a href="{{ crate::constants::routes::SERVICES }}" class="navbar-link"> At Your Service </a>
         </li>
         <li>
-            <a href="/resources" class="navbar-link"> Resources </a>
+            <a href="{{ crate::constants::routes::ABOUT }}" class="navbar-link"> Founder </a>
         </li>
     </ul>
 
     <ul class="navbar-group navbar-right">
         <li>
-            <a href="/connect" class="navbar-link navbar-cta" aria-label="Connect"> Connect </a>
+            <a href="{{ crate::constants::routes::CONNECT }}" class="navbar-link navbar-cta" aria-label="Connect"> Connect </a>
         </li>
     </ul>
 </nav>

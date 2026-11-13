@@ -1,7 +1,10 @@
 use crate::{
-    constants::{self, icons, paths::VITE_MANIFEST, titles},
+    constants::{descriptions, icons, paths::VITE_MANIFEST, routes, titles},
     error::{AppError, AppResult},
-    templates::{BaseTemplateContext, ContactTemplate},
+    templates::{
+        AboutTemplate, BaseTemplateContext, ConnectTemplate, ExperiencesTemplate, HomeTemplate,
+        ServicesTemplate, ThankYouTemplate,
+    },
 };
 use askama::Template;
 use serde::Deserialize;
@@ -44,20 +47,85 @@ impl Assets {
     }
 
     pub fn generate_all_static_pages(&self) -> AppResult<()> {
-        self.generate_contact()
+        let assets = Arc::new(self.clone());
+        self.generate_about(assets.clone())?;
+        self.generate_experiences(assets.clone())?;
+        self.generate_home(assets.clone())?;
+        self.generate_services(assets.clone())?;
+        self.generate_connect(assets.clone())?;
+        self.generate_thanks(assets)
     }
 
-    fn generate_contact(&self) -> AppResult<()> {
+    fn generate_about(&self, assets: Arc<Assets>) -> AppResult<()> {
         let base = BaseTemplateContext::new(
-            titles::CONTACT,
-            constants::seo_descriptions::CONTACT,
-            constants::endpoints::CONTACT.into(),
+            titles::ABOUT,
+            descriptions::ABOUT,
+            routes::ABOUT.into(),
             icons::CONTACT,
-            Arc::new(self.clone()),
+            assets,
         );
-        let template = ContactTemplate { base };
+        let template = AboutTemplate { base };
+        self.write_static_page("about", template)
+    }
 
-        self.write_static_page("contact", template)
+    fn generate_experiences(&self, assets: Arc<Assets>) -> AppResult<()> {
+        let base = BaseTemplateContext::new(
+            titles::EXPERIENCES,
+            descriptions::EXPERIENCES,
+            routes::EXPERIENCES.into(),
+            icons::HOME,
+            assets,
+        );
+        let template = ExperiencesTemplate { base };
+        self.write_static_page("experiences", template)
+    }
+
+    fn generate_home(&self, assets: Arc<Assets>) -> AppResult<()> {
+        let base = BaseTemplateContext::new(
+            titles::HOME,
+            descriptions::HOME,
+            routes::HOME.into(),
+            icons::HOME,
+            assets,
+        );
+        let template = HomeTemplate { base };
+        self.write_static_page("home", template)
+    }
+
+    fn generate_services(&self, assets: Arc<Assets>) -> AppResult<()> {
+        let base = BaseTemplateContext::new(
+            titles::SERVICES,
+            descriptions::SERVICES,
+            routes::SERVICES.into(),
+            icons::HOME,
+            assets,
+        );
+        let template = ServicesTemplate { base };
+        self.write_static_page("services", template)
+    }
+
+    fn generate_connect(&self, assets: Arc<Assets>) -> AppResult<()> {
+        let base = BaseTemplateContext::new(
+            titles::CONNECT,
+            descriptions::CONNECT,
+            routes::CONNECT.into(),
+            icons::HOME,
+            assets,
+        );
+        let template = ConnectTemplate { base };
+        self.write_static_page("connect", template)
+    }
+
+    fn generate_thanks(&self, assets: Arc<Assets>) -> AppResult<()> {
+        let base = BaseTemplateContext::new(
+            titles::THANK_YOU,
+            descriptions::THANK_YOU,
+            routes::THANK_YOU.into(),
+            icons::HOME,
+            assets,
+        );
+        let template = ThankYouTemplate { base };
+        self.write_static_page("thanks", template)
     }
 
     fn write_static_page<T: Template>(&self, route: &str, template: T) -> AppResult<()> {

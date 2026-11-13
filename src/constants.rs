@@ -1,19 +1,23 @@
 // Usually changes
 
-pub mod endpoints {
+pub mod routes {
     pub const HOME: &str = "/";
     pub const CONTACT: &str = "/contact";
     pub const EXPERIENCES: &str = "/experiences";
     pub const SERVICES: &str = "/services";
     pub const ABOUT: &str = "/about";
+    pub const CONNECT: &str = "/connect";
+    pub const THANK_YOU: &str = "/thank-you";
 }
 
-pub mod seo_descriptions {
+pub mod descriptions {
     pub const HOME: &str = "Less Stress. More Joy. Create Room to THRIVE.";
     pub const EXPERIENCES: &str = "Learn the practical ways to experience joy";
     pub const SERVICES: &str = "Here, you may learn...";
     pub const CONTACT: &str = "Contact information to get in touch with me";
     pub const ABOUT: &str = "Meet the founder of space4joy";
+    pub const CONNECT: &str = "Send a message to the space4joy team";
+    pub const THANK_YOU: &str = "Thank you for connecting with us!";
 }
 
 pub mod contact_information {
@@ -32,8 +36,9 @@ pub mod titles {
     pub const HOME: &str = "Space4Joy";
     pub const EXPERIENCES: &str = "Space4Joy experience";
     pub const SERVICES: &str = "At your service";
-    pub const CONTACT: &str = "Contact";
     pub const ABOUT: &str = "About";
+    pub const CONNECT: &str = "Connect with us";
+    pub const THANK_YOU: &str = "Thank you!";
 }
 
 // Rarely changes
@@ -59,13 +64,6 @@ pub mod cookies {
     pub const SESSION_ID: &str = "session_id";
 }
 
-pub mod service {
-    pub const NAME: &str = "buildhaven";
-}
-
-pub mod project {
-    pub const NAME: &str = env!("CARGO_PKG_NAME");
-    pub const DESCRIPTION: &str = env!("CARGO_PKG_DESCRIPTION");
-    pub const VERSION: &str = env!("CARGO_PKG_VERSION");
-    pub const REPOSITORY: &str = env!("CARGO_PKG_REPOSITORY");
+pub mod locales {
+    pub const ENGLISH: &str = "en";
 }
